@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <script type="text/javascript">
+        function showIdle(){
+            document.getElementById("billing").style.color ="green";
+        }
+        function loadPreChat(){
+            document.getElementById("billing").style.backgroundColor ="green";
+            document.getElementById("routing").style.display = "none";
+            document.getElementById("survey").style.display = "block";
+            document.getElementById("backDiv").style.display = "none";
+            document.getElementById("startDiv").style.display = "block";
+        }
+        function stateChange(){
+            var state = document.getElementById("state_select").value;
+            if(state == "California"){
+                document.getElementById("purchased").style.display = "block";
+            } else{
+                document.getElementById("purchased").style.display = "none";
+            }
+        }
+        function startChat(){
+            var name = document.getElementById("full_name").value;
+            var phone_number = document.getElementById("phone_number").value;
+            if(name == ""){
+                document.getElementById("full_name").style.borderColor = "red";
+                alert("Please enter a Full Name.");
+                return;
+            } else{
+                document.getElementById("full_name").style.borderColor = "black";
+            }
+            
+            if(phone_number == ""){
+                document.getElementById("phone_number").style.borderColor = "red";
+                alert("Please enter a Mobile Phone Number that is 10 digits.");
+                return;
+            } else{
+                if(phone_number.length != 10){
+                    document.getElementById("phone_number").style.borderColor = "red";
+                    alert("Please enter a Mobile Phone Number that is 10 digits.");
+                    return;  
+                }
+                document.getElementById("phone_number").style.borderColor = "black";
+            }
+            document.getElementById("startDiv").style.display = "none";
+            document.getElementById("survey").innerHTML = "Congradulations!! You have reached the chat agent.";
+        }
+        </script>
+    </head>
+    <body style="width:300px;height:470px">
+        <div>
+            <table>
+                <thead>
+                    <tr style="background-color:black; cell-padding:80px">
+                        <th style="width:270px">
+                            <img src="examples/assets/logo-best-brands.png"></img>
+                        </th>
+                        <th style="width:30px">
+                            <a href="close"><img src="examples/assets/btn-close.png"></img></a>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="width:300px">
+                            <span id="navigation"></span>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="width:300px">
+                            <span id="question">Which Mobile topic would you like help with?</span>
+                        </th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    <table id="routing"  style="display:block">
+                        <tbody>
+                            <tr id="billing">
+                                <td style="width:60px; cursor:pointer" onmouseover="showIdle()" onmousedown="loadPreChat()"><img src="examples/assets/icon-billing.png"></img></td>
+                                <td style="width:240px; cursor:pointer" onmouseover="showIdle()" onmousedown="loadPreChat()">Billing and Payments</td>
+                            </tr>
+                            <tr>
+                                <td style="width:60px"><img src="examples/assets/icon-tech-support.png"></img></td>
+                                <td style="width:240px">Technical Support</td>
+                            </tr>
+                            <tr>
+                                <td style="width:60px"><img src="examples/assets/icon-login.png"></img></td>
+                                <td style="width:240px">Account Login Support</td>
+                            </tr>
+                            <tr>
+                                <td style="width:60px"><img src="examples/assets/icon-other.png"></img></td>
+                                <td style="width:240px">Other</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table id="survey" style="display:none">
+                        <tbody>
+                            <tr>
+                                <td style="width:60px">
+                                    <span>Full Name:*</span>
+                                    <br>
+                                    <img src="examples/assets/icon-form-avatar.png">
+                                    <input type="text" id="full_name"></input>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:60px">
+                                    <span>Mobile Phone Number:*</span>
+                                    <br>
+                                    <img src="examples/assets/icon-form-phone.png">
+                                    <input type="number" id="phone_number" style="moz-appearance:textfield; -webkit-appearance: none"></input>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:60px">
+                                    <select id="state_select" onchange="stateChange()">
+                                        <option value=""></option>
+                                        <option value="California">California</option>
+                                        <option value="Other">Other State</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr id="purchased" style="display:none">
+                                <td style="width:60px">
+                                    <span wrap="nowrap">Was you phone purchased in CA?</span>
+                                    <br>
+                                    <select>
+                                        <option value=""></option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:60px">
+                                    <span>Describe you question</span>
+                                    <br>
+                                    <input type="textarea"></input>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </tbody>
+            </table>
+        </div>
+        <div id="backDiv" style="display:block">
+            <img src="examples/assets/icon-back-button.png" style="width:10%"></img>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span>Back</span>
+        </div>
+        <div id="startDiv" style="display:none">
+            <button type="submit" onclick="startChat()" style="background-color:green; text-align:center; color:white; width:100px; float:right" title="Start Chat">Start Chat</button>
+        </div>
+        <div style="background-color:grey">
+            <img src="examples/assets/logo-tc.png" style="width:30%"></img>
+        </div>
+    </body>
+</html>
